@@ -17,11 +17,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Run OWASP ZAP with authentication
+      # Step 2: Run OWASP ZAP with Authentication
       - name: Run OWASP ZAP with Authentication
         run: |
           docker run -v ${{ github.workspace }}:/zap/wrk/ \
-            -t owasp/zap2docker-stable zap-full-scan.py \
+            ghcr.io/zaproxy/zaproxy zap-full-scan.py \
             -t https://mrunlikeliest.github.io/vulnerable-web-app/ \
             -r zap-report.html \
             -J zap-report.json \
