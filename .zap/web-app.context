@@ -5,7 +5,7 @@
   </urls>
   <authentication>
     <type>formBasedAuthentication</type>
-    <loginUrl>https://mrunlikeliest.github.io/vulnerable-web-app/login.html</loginUrl>
+    <loginUrl><![CDATA[https://mrunlikeliest.github.io/vulnerable-web-app/login.html]]></loginUrl>
     <loginRequestData>username={%username%}&amp;password={%password%}</loginRequestData>
   </authentication>
   <users>
