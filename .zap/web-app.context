@@ -3,11 +3,6 @@
   <urls>
     <url regex="https://mrunlikeliest.github.io/vulnerable-web-app/.*" />
   </urls>
-  <authentication>
-    <type>formBasedAuthentication</type>
-    <loginurl>https://mrunlikeliest.github.io/vulnerable-web-app/login.html</loginurl>
-    <loginRequestData>username={%username%}&amp;password={%password%}</loginRequestData>
-  </authentication>
   <users>
     <user>
       <name>TestUser</name>
@@ -18,4 +13,13 @@
       <enabled>true</enabled>
     </user>
   </users>
+  <sessionManagement>
+    <type>cookie</type>
+    <cookie>
+      <name>session</name>
+      <value>12345</value>
+      <domain>mrunlikeliest.github.io</domain>
+      <path>/</path>
+    </cookie>
+  </sessionManagement>
 </context>
