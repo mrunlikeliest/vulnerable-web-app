@@ -22,7 +22,7 @@ jobs:
         run: |
           docker run -v ${{ github.workspace }}:/zap/wrk/ \
             -t owasp/zap2docker-stable zap-full-scan.py \
-            -t https://<your-username>.github.io/vulnerable-web-app/ \
+            -t https://mrunlikeliest.github.io/vulnerable-web-app/ \
             -r zap-report.html \
             -J zap-report.json \
             -w zap-output.sarif \
