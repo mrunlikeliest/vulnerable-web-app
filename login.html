@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form action="index.html" method="POST" onsubmit="return login();">
+    <form onsubmit="return login();">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username">
         <br><br>
@@ -18,7 +18,7 @@
     </form>
 
     <script>
-        // Insecure login logic (vulnerable to testing purposes)
+        // Insecure login logic (vulnerable for testing purposes)
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -27,7 +27,8 @@
             if (username === "admin" && password === "password123") {
                 // Store a fake session token (vulnerable to session hijacking)
                 document.cookie = "session=12345; path=/;";
-                return true; // Allow form submission
+                window.location.href = "index.html"; // Redirect to main page
+                return false; // Prevent form submission
             } else {
                 document.getElementById('error-message').textContent = "Invalid username or password.";
                 return false; // Prevent form submission
