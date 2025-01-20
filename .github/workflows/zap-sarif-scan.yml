@@ -1,0 +1,47 @@
+name: OWASP ZAP SARIF Scan with Authentication
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday at midnight UTC
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Run OWASP ZAP with authentication
+      - name: Run OWASP ZAP with Authentication
+        run: |
+          docker run -v ${{ github.workspace }}:/zap/wrk/ \
+            -t owasp/zap2docker-stable zap-full-scan.py \
+            -t https://<your-username>.github.io/vulnerable-web-app/ \
+            -r zap-report.html \
+            -J zap-report.json \
+            -w zap-output.sarif \
+            --auth-loginurl https://mrunlikeliest.github.io/vulnerable-web-app/login.html \
+            --auth-username admin \
+            --auth-password password123 \
+            --auth-username-field username \
+            --auth-password-field password \
+            --auth-extract-session true
+
+      # Step 3: Upload SARIF to GitHub Security Dashboard
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: zap-output.sarif
+
+      # Step 4: Upload HTML Report as Artifact (Optional)
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-html-report
+          path: zap-report.html
