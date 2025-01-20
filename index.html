@@ -5,6 +5,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script>
+        // Check for a fake session token
+        if (document.cookie.indexOf("session=12345") === -1) {
+            window.location.href = "login.html"; // Redirect to login if no session token
+        }
+    </script>
+
     <h1>Vulnerable Web Application</h1>
     <p>Welcome! This is a deliberately vulnerable web application for OWASP ZAP testing.</p>
     
