@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    <script>
+        // Insecure IDOR Simulation: No authentication or authorization check
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get("id");
+        
+        // Dummy data
+        const users = {
+            "1": { name: "Admin", email: "admin@example.com" },
+            "2": { name: "John Doe", email: "john@example.com" },
+            "3": { name: "Jane Doe", email: "jane@example.com" },
+        };
+
+        // Vulnerable: User ID is exposed and accessible directly via URL
+        const user = users[userId] || { name: "Unknown", email: "N/A" };
+        document.write(`<p>Name: ${user.name}</p>`);
+        document.write(`<p>Email: ${user.email}</p>`);
+    </script>
+</body>
+</html>
