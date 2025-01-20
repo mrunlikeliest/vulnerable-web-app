@@ -10,7 +10,7 @@ Cross-Site Scripting (XSS):
         <script>alert('XSS')</script>
 
 2. The user.html page allows users to view any profile by modifying the id parameter in the URL:
-    https://<your-url>/user.html?id=2
+    https://url/user.html?id=2
 
 3. No Authentication or Input Validation:
     No input validation or authorization checks are implemented, making it easier to exploit vulnerabilities.
