@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerable Web App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Vulnerable Web Application</h1>
+    <p>Welcome! This is a deliberately vulnerable web application for OWASP ZAP testing.</p>
+    
+    <!-- XSS Vulnerability -->
+    <form action="search.html" method="GET">
+        <label for="query">Search:</label>
+        <input type="text" id="query" name="query" placeholder="Enter something">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Insecure IDOR Simulation -->
+    <p><a href="user.html?id=1">View User Profile</a></p>
+</body>
+</html>
