@@ -1,0 +1,21 @@
+<context>
+  <name>VulnerableWebAppContext</name>
+  <urls>
+    <url regex="https://mrunlikeliest.github.io/vulnerable-web-app/.*" />
+  </urls>
+  <authentication>
+    <type>formBasedAuthentication</type>
+    <loginUrl>https://mrunlikeliest.github.io/vulnerable-web-app/login.html</loginUrl>
+    <loginRequestData>username={%username%}&password={%password%}</loginRequestData>
+  </authentication>
+  <users>
+    <user>
+      <name>TestUser</name>
+      <credentials>
+        <username>admin</username>
+        <password>password123</password>
+      </credentials>
+      <enabled>true</enabled>
+    </user>
+  </users>
+</context>
