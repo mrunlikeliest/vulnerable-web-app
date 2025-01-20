@@ -17,21 +17,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Run OWASP ZAP with Authentication
-      - name: Run OWASP ZAP with Authentication
+      # Step 2: Run OWASP ZAP with Context
+      - name: Run OWASP ZAP with Context
         run: |
           docker run -v ${{ github.workspace }}:/zap/wrk/ \
             ghcr.io/zaproxy/zaproxy zap-full-scan.py \
             -t https://mrunlikeliest.github.io/vulnerable-web-app/ \
+            -n /zap/wrk/.zap/web-app.context \
             -r zap-report.html \
             -J zap-report.json \
             -w zap-output.sarif \
-            --auth-loginurl https://mrunlikeliest.github.io/vulnerable-web-app/login.html \
-            --auth-username admin \
-            --auth-password password123 \
-            --auth-username-field username \
-            --auth-password-field password \
-            --auth-extract-session true
+            -U TestUser
 
       # Step 3: Upload SARIF to GitHub Security Dashboard
       - name: Upload SARIF
