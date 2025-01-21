@@ -1,5 +1,5 @@
 <context>
-  <name>web-app</name>
+  <name>web-app</name> <!-- Ensure the name is valid and non-empty -->
   <includeRegexes>
     <includeRegex>https://mrunlikeliest.github.io/vulnerable-web-app/.*</includeRegex>
   </includeRegexes>
@@ -10,7 +10,6 @@
       <script>
         <![CDATA[
         function authenticate(helper, paramsValues, credentials) {
-            // Add the session cookie directly
             var msg = helper.prepareMessage();
             msg.getRequestHeader().setHeader("Cookie", "session=12345");
             return msg;
