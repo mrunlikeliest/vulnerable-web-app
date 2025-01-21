@@ -8,19 +8,15 @@
     <method>scriptBasedAuthentication</method>
     <scriptBasedAuthentication>
       <script>
-        <type>authentication</type>
-        <engine>Oracle Nashorn</engine>
-        <fileName>setSessionCookie.js</fileName>
-        <script>
-          // Script to set the session cookie for authentication
-          function authenticate(helper, paramsValues, credentials) {
-              // Add the session cookie directly
-              var msg = helper.prepareMessage();
-              msg.getRequestHeader().setHeader("Cookie", "session=12345");
-              return msg;
-          }
-        </script>
-      </scriptBasedAuthentication>
+        <![CDATA[
+        function authenticate(helper, paramsValues, credentials) {
+            // Add the session cookie directly
+            var msg = helper.prepareMessage();
+            msg.getRequestHeader().setHeader("Cookie", "session=12345");
+            return msg;
+        }
+        ]]>
+      </script>
     </scriptBasedAuthentication>
   </authentication>
   <users>
@@ -41,7 +37,7 @@
   </technology>
   <urls>
     <startUrls>
-      <startUrl url="https://mrunlikeliest.github.io/vulnerable-web-app/" regex="true" />
+      <startUrl url="https://mrunlikeliest.github.io/vulnerable-web-app/" regex="true"/>
     </startUrls>
   </urls>
 </context>
