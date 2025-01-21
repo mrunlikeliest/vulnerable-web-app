@@ -1,5 +1,5 @@
 <context>
-  <name>webappcontext</name> <!-- Ensure the name is valid and non-empty -->
+  <name>webappcontext</name>
   <includeRegexes>
     <includeRegex>https://mrunlikeliest.github.io/vulnerable-web-app/.*</includeRegex>
   </includeRegexes>
