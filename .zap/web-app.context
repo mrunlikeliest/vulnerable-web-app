@@ -1,19 +1,11 @@
 <context>
-  <name>VulnerableWebAppContext</name>
+  <name>WebAppContext</name>
   <urls>
+    <!-- Include the entire vulnerable-web-app GitHub page -->
     <url regex="https://mrunlikeliest.github.io/vulnerable-web-app/.*" />
   </urls>
-  <users>
-    <user>
-      <name>TestUser</name>
-      <credentials>
-        <username>admin</username>
-        <password>password123</password>
-      </credentials>
-      <enabled>true</enabled>
-    </user>
-  </users>
   <sessionManagement>
+    <!-- Using cookie-based session management -->
     <type>cookie</type>
     <cookie>
       <name>session</name>
@@ -22,4 +14,19 @@
       <path>/</path>
     </cookie>
   </sessionManagement>
+  <authentication>
+    <!-- Form-based authentication isn't applicable as login is client-side -->
+    <type>none</type>
+  </authentication>
+  <users>
+    <!-- One test user added for demonstration -->
+    <user>
+      <name>admin</name>
+      <enabled>true</enabled>
+      <credentials>
+        <username>admin</username>
+        <password>password123</password>
+      </credentials>
+    </user>
+  </users>
 </context>
