@@ -1,27 +1,31 @@
 <context>
-  <name>WebAppContext</name>
-  <urls>
-    <!-- Include the entire vulnerable-web-app GitHub page -->
-    <url regex="https://mrunlikeliest.github.io/vulnerable-web-app/.*" />
-  </urls>
-  <sessionManagement>
-    <!-- Using cookie-based session management -->
-    <type>cookie</type>
-    <cookie>
-      <name>session</name>
-      <value>12345</value>
-      <domain>mrunlikeliest.github.io</domain>
-      <path>/</path>
-    </cookie>
-  </sessionManagement>
+  <name>web-app</name>
+  <includeRegexes>
+    <includeRegex>https://mrunlikeliest.github.io/vulnerable-web-app/.*</includeRegex>
+  </includeRegexes>
+  <excludeRegexes/>
   <authentication>
-    <!-- Form-based authentication isn't applicable as login is client-side -->
-    <type>none</type>
+    <method>scriptBasedAuthentication</method>
+    <scriptBasedAuthentication>
+      <script>
+        <type>authentication</type>
+        <engine>Oracle Nashorn</engine>
+        <fileName>setSessionCookie.js</fileName>
+        <script>
+          // Script to set the session cookie for authentication
+          function authenticate(helper, paramsValues, credentials) {
+              // Add the session cookie directly
+              var msg = helper.prepareMessage();
+              msg.getRequestHeader().setHeader("Cookie", "session=12345");
+              return msg;
+          }
+        </script>
+      </scriptBasedAuthentication>
+    </scriptBasedAuthentication>
   </authentication>
   <users>
-    <!-- One test user added for demonstration -->
     <user>
-      <name>admin</name>
+      <name>TestUser</name>
       <enabled>true</enabled>
       <credentials>
         <username>admin</username>
@@ -29,4 +33,15 @@
       </credentials>
     </user>
   </users>
+  <sessionManagement>
+    <methodName>cookieBasedSessionManagement</methodName>
+  </sessionManagement>
+  <technology>
+    <include>Default</include>
+  </technology>
+  <urls>
+    <startUrls>
+      <startUrl url="https://mrunlikeliest.github.io/vulnerable-web-app/" regex="true" />
+    </startUrls>
+  </urls>
 </context>
